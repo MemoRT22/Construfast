@@ -56,7 +56,7 @@ export default function LateralNav() {
       </a>
 
       {/* Lateral nav with labels */}
-      <nav className="nav-lateral" aria-label="Navegacion de secciones">
+      <nav className="nav-lateral" aria-label="Navegación de secciones">
         <div className="relative flex flex-col gap-5">
           {/* Background line */}
           <div className="absolute top-0 bottom-0 w-[1px] bg-white/10 left-[5px]" />

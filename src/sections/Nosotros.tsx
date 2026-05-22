@@ -9,29 +9,29 @@ gsap.registerPlugin(ScrollTrigger);
 const stations = [
   {
     icon: Target,
-    title: 'Quienes Somos',
-    content: 'En CONSTRUFAST sabemos que cada proyecto representa esfuerzo, suenos y grandes metas. Por eso, mas que vender materiales para construccion, nos enfocamos en brindar confianza, calidad y rapidez para que cada obra avance sin detenerse.',
-    sub: 'Somos una empresa especializada en la comercializacion de materiales para la construccion en Queretaro, orientada a atender de manera profesional y eficiente a clientes corporativos, constructoras y desarrolladores.',
+    title: 'Quiénes Somos',
+    content: 'En CONSTRUFAST sabemos que cada proyecto representa esfuerzo, sueños y grandes metas. Por eso, más que vender materiales para construcción, nos enfocamos en brindar confianza, calidad y rapidez para que cada obra avance sin detenerse.',
+    sub: 'Somos una empresa especializada en la comercialización de materiales para la construcción en Querétaro, orientada a atender de manera profesional y eficiente a clientes corporativos, constructoras y desarrolladores.',
   },
   {
     icon: Target,
-    title: 'Mision',
-    content: 'Ayudar a nuestros clientes a construir sus proyectos con materiales de calidad, entregas rapidas y atencion confiable, ofreciendo soluciones que impulsen cada obra con seguridad y compromiso.',
+    title: 'Misión',
+    content: 'Ayudar a nuestros clientes a construir sus proyectos con materiales de calidad, entregas rápidas y atención confiable, ofreciendo soluciones que impulsen cada obra con seguridad y compromiso.',
   },
   {
     icon: Eye,
-    title: 'Vision',
-    content: 'Convertirnos en una empresa reconocida por acompanar cada proyecto con rapidez, calidad y honestidad, siendo un aliado de confianza para quienes buscan construir con seguridad y tranquilidad.',
+    title: 'Visión',
+    content: 'Convertirnos en una empresa reconocida por acompañar cada proyecto con rapidez, calidad y honestidad, siendo un aliado de confianza para quienes buscan construir con seguridad y tranquilidad.',
   },
   {
     icon: Building2,
     title: 'Experiencia',
-    content: 'Atendemos desde remodelaciones y viviendas familiares hasta grandes proyectos corporativos, con logistica eficiente y suministros oportunos.',
+    content: 'Atendemos desde remodelaciones y viviendas familiares hasta grandes proyectos corporativos, con logística eficiente y suministros oportunos.',
   },
   {
     icon: Users,
     title: 'Compromiso',
-    content: 'Nuestra prioridad es que cada cliente reciba atencion honesta, cercana y profesional, creando relaciones basadas en el respeto y la confianza.',
+    content: 'Nuestra prioridad es que cada cliente reciba atención honesta, cercana y profesional, creando relaciones basadas en el respeto y la confianza.',
   },
 ];
 

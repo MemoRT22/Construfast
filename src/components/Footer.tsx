@@ -26,7 +26,7 @@ export default function Footer() {
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs">
               Donde la obra nunca se detiene. Distribuidora de materiales de
-              construccion en Queretaro.
+              construcción en Querétaro.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="block text-white/40 hover:text-green-400 text-sm transition-colors neon-glow font-mono"
               >
-                &gt; Catalogo PDF
+                &gt; Catálogo PDF
               </a>
             </nav>
           </div>

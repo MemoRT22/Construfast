@@ -105,7 +105,7 @@ export default function Productos() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="productos-title text-center mb-16">
           <span className="text-green-400 font-semibold text-sm uppercase tracking-widest">
-            Catalogo
+            Catálogo
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mt-3">
             Nuestros Productos
@@ -193,7 +193,7 @@ export default function Productos() {
             className="inline-flex items-center gap-3 bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl hover:bg-green-400/10 hover:border-green-400/20 transition-all duration-300 group"
           >
             <Download size={18} className="group-hover:animate-bounce" />
-            Descargar Catalogo PDF
+            Descargar Catálogo PDF
           </a>
         </div>
       </div>

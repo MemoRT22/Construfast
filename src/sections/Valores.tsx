@@ -16,16 +16,16 @@ import { useDevice } from '../hooks/useDevice';
 gsap.registerPlugin(ScrollTrigger);
 
 const valores = [
-  { name: 'Respeto', icon: Heart, desc: 'Relaciones basadas en la dignidad y consideracion mutua' },
-  { name: 'Honestidad', icon: Shield, desc: 'Transparencia comercial en cada operacion' },
-  { name: 'Compromiso', icon: Handshake, desc: 'Dedicacion total con cada proyecto y cliente' },
+  { name: 'Respeto', icon: Heart, desc: 'Relaciones basadas en la dignidad y consideración mutua' },
+  { name: 'Honestidad', icon: Shield, desc: 'Transparencia comercial en cada operación' },
+  { name: 'Compromiso', icon: Handshake, desc: 'Dedicación total con cada proyecto y cliente' },
   { name: 'Calidad', icon: Award, desc: 'Materiales de las mejores marcas del mercado' },
   { name: 'Responsabilidad', icon: ClipboardCheck, desc: 'Cumplimiento puntual de entregas y acuerdos' },
 ];
 
 const diferenciadores = [
-  { icon: Zap, title: 'Atencion Inmediata', desc: 'Respuesta rapida y personalizada a tus necesidades' },
-  { icon: Truck, title: 'Logistica Eficiente', desc: 'Entregas oportunas que mantienen tu obra en marcha' },
+  { icon: Zap, title: 'Atención Inmediata', desc: 'Respuesta rápida y personalizada a tus necesidades' },
+  { icon: Truck, title: 'Logística Eficiente', desc: 'Entregas oportunas que mantienen tu obra en marcha' },
   { icon: Clock, title: 'Cumplimiento de Cronogramas', desc: 'Suministros que se adaptan a tus tiempos' },
 ];
 

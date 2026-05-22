@@ -158,7 +158,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-subtitle text-lg sm:text-xl md:text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed mb-12 opacity-0">
-          Distribuidora de materiales de construccion en Queretaro.
+          Distribuidora de materiales de construcción en Querétaro.
           Calidad, rapidez y confianza en cada entrega.
         </p>
 
@@ -167,7 +167,7 @@ export default function Hero() {
             href="#contacto"
             className="group relative px-10 py-5 bg-green-400 text-navy-900 font-bold text-lg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(122,182,72,0.4)]"
           >
-            <span className="relative z-10">Solicitar Cotizacion</span>
+            <span className="relative z-10">Solicitar Cotización</span>
             <div className="absolute inset-0 bg-green-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </a>
           <a

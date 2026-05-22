@@ -53,7 +53,7 @@ export default function MobileHeader() {
             <button
               onClick={() => setMenuOpen(false)}
               className="absolute top-5 right-5 text-white p-2"
-              aria-label="Cerrar menu"
+              aria-label="Cerrar menú"
             >
               <X size={28} />
             </button>
@@ -77,7 +77,7 @@ export default function MobileHeader() {
               onClick={() => setMenuOpen(false)}
               className="mt-8 inline-block text-center font-bold bg-green-400 text-navy-900 px-6 py-4 rounded-lg text-lg hover:bg-green-300 transition-colors"
             >
-              Solicitar Cotizacion
+              Solicitar Cotización
             </a>
           </div>
         </div>

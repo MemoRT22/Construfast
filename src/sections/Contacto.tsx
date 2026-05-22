@@ -87,13 +87,13 @@ export default function Contacto() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="contacto-title text-center mb-16">
           <span className="text-green-400 font-semibold text-sm uppercase tracking-widest">
-            Contactanos
+            Contáctanos
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mt-3">
             Hablemos de tu proyecto
           </h2>
           <p className="text-white/40 text-lg mt-4 max-w-2xl mx-auto">
-            Solicita tu cotizacion o escribenos para resolver cualquier duda
+            Solicita tu cotización o escríbenos para resolver cualquier duda
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export default function Contacto() {
                 <form onSubmit={handleSubmit} className="pt-8 lined-paper">
                   {/* Form header */}
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-                    <h3 className="font-bold text-navy-800 text-lg">Orden de Cotizacion</h3>
+                    <h3 className="font-bold text-navy-800 text-lg">Orden de Cotización</h3>
                     <span className="text-xs text-gray-400 font-mono">
                       #{String(Date.now()).slice(-6)}
                     </span>
@@ -164,7 +164,7 @@ export default function Contacto() {
 
                   <div className="mt-5">
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">
-                      Telefono
+                      Teléfono
                     </label>
                     <input
                       type="tel"
@@ -185,7 +185,7 @@ export default function Contacto() {
                       value={form.mensaje}
                       onChange={handleChange}
                       rows={4}
-                      placeholder="Cuentanos sobre tu proyecto o los materiales que necesitas..."
+                      placeholder="Cuéntanos sobre tu proyecto o los materiales que necesitas..."
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white/50 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all resize-none text-navy-800 font-handwriting text-lg"
                     />
                   </div>
@@ -237,7 +237,7 @@ export default function Contacto() {
                 <MapPin className="text-green-400" size={18} />
               </div>
               <div>
-                <p className="text-[11px] text-white/40 font-semibold uppercase tracking-wider">Ubicacion</p>
+                <p className="text-[11px] text-white/40 font-semibold uppercase tracking-wider">Ubicación</p>
                 <p className="text-white font-bold text-base mt-0.5">
                   C. Kilimanjaro #3 Col. Loma Bonita, Qro. C.P. 76118
                 </p>
@@ -262,9 +262,9 @@ export default function Contacto() {
 
             {/* WhatsApp CTA card */}
             <div className="bg-gradient-to-br from-navy-800 to-navy-900 border border-white/10 rounded-xl p-6 text-white mt-6">
-              <h4 className="font-bold text-lg mb-2">Atencion Rapida</h4>
+              <h4 className="font-bold text-lg mb-2">Atención Rápida</h4>
               <p className="text-white/60 text-sm leading-relaxed">
-                Escribenos por WhatsApp para una respuesta inmediata.
+                Escríbenos por WhatsApp para una respuesta inmediata.
                 Cotizaciones, disponibilidad y entregas al momento.
               </p>
               <a
