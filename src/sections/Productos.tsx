@@ -54,7 +54,7 @@ const categories = [
       { name: 'Tabique', img: '/assets/images/Prefabricados/Fondo_de_tabicon_eliminado.png' },
       { name: 'Ladrillo', img: '/assets/images/Prefabricados/Fondo_de_ladrillo_rojo_eliminado.png' },
       { name: 'Vigueta', img: '/assets/images/Prefabricados/Vigueta.png' },
-      { name: 'Bovedilla', img: '/assets/images/Prefabricados/Bovedilla.webp' },
+      { name: 'Bovedilla', img: '/assets/images/Prefabricados/Fondo_de_Bovedilla_eliminado.png' },
     ],
     brands: [],
     accent: '#78716c',
