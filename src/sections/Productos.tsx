@@ -10,6 +10,7 @@ import {
   Cylinder,
   Download,
   X,
+  ChevronRight,
 } from 'lucide-react';
 import { useDevice } from '../hooks/useDevice';
 
@@ -29,9 +30,7 @@ const categories = [
       { name: 'Estribo', img: '/assets/images/Acero/Fondo_de_Estribo_eliminado.png' },
     ],
     brands: ['DeAcero', 'Sicartsa', 'Simec'],
-    color: 'from-gray-600 to-gray-800',
     accent: '#6b7280',
-    bgImage: '/assets/images/Acero/Fondo_de_varilla_eliminado.png',
   },
   {
     name: 'Polvos',
@@ -45,9 +44,7 @@ const categories = [
       { name: 'Cal', img: '/assets/images/Polvos/Fondo_de_cal_calidra_eliminado.png' },
     ],
     brands: ['Cuvasa', 'Cemex', 'Holcim', 'Unibasico', 'Uniblock'],
-    color: 'from-amber-600 to-amber-800',
     accent: '#d97706',
-    bgImage: '/assets/images/Polvos/CEMENTO_25_KG.png',
   },
   {
     name: 'Prefabricados',
@@ -60,9 +57,7 @@ const categories = [
       { name: 'Bovedilla', img: '/assets/images/Prefabricados/Bovedilla.webp' },
     ],
     brands: [],
-    color: 'from-stone-500 to-stone-700',
     accent: '#78716c',
-    bgImage: '/assets/images/Prefabricados/Fondo_de_Block_eliminado.png',
   },
   {
     name: 'Agregados',
@@ -74,9 +69,7 @@ const categories = [
       { name: 'Piedra', img: '/assets/images/Agregados/piedra.jpg' },
     ],
     brands: [],
-    color: 'from-orange-600 to-orange-800',
     accent: '#ea580c',
-    bgImage: '/assets/images/Agregados/grava.jpg',
   },
   {
     name: 'Madera / Ferreteria',
@@ -88,9 +81,7 @@ const categories = [
       { name: 'Herramientas', img: '/assets/images/Ferreteria_y_madera/Fondo_de_herramientas_eliminado.png' },
     ],
     brands: ['Truper'],
-    color: 'from-yellow-700 to-yellow-900',
     accent: '#a16207',
-    bgImage: '/assets/images/Ferreteria_y_madera/Fondo_de_triplay_eliminado.png',
   },
   {
     name: 'Concreto',
@@ -99,13 +90,10 @@ const categories = [
       { name: 'Concreto Premezclado', img: null },
     ],
     brands: [],
-    color: 'from-slate-500 to-slate-700',
     accent: '#64748b',
-    bgImage: null,
   },
 ];
 
-// Flat list of all product images for the marquee
 const marqueeItems = categories.flatMap((cat) =>
   cat.products.filter((p) => p.img !== null).map((p) => ({
     name: p.name,
@@ -128,10 +116,10 @@ export default function Productos() {
         scrollTrigger: { trigger: '.productos-title', start: 'top 85%' },
       });
 
-      gsap.fromTo('.product-iso-card', { opacity: 0, y: 60 }, {
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.products-warehouse', start: 'top 80%' },
+      gsap.fromTo('.product-card', { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.products-grid', start: 'top 80%' },
       });
 
       gsap.fromTo('.marquee-strip', { opacity: 0 }, {
@@ -143,7 +131,6 @@ export default function Productos() {
     return () => ctx.revert();
   }, []);
 
-  // Infinite marquee animation
   useEffect(() => {
     if (!marqueeRef.current) return;
     const track = marqueeRef.current;
@@ -151,7 +138,7 @@ export default function Productos() {
 
     const tween = gsap.to(track, {
       x: -totalWidth,
-      duration: 40,
+      duration: 45,
       ease: 'none',
       repeat: -1,
       modifiers: {
@@ -170,15 +157,6 @@ export default function Productos() {
     <section ref={sectionRef} id="productos" className="py-24 md:py-32 bg-navy-950 relative overflow-hidden">
       <div className="texture-metal absolute inset-0" />
 
-      {/* Warehouse ambient lines */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-white/5" />
-        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-white/5" />
-        <div className="absolute top-0 left-3/4 w-[1px] h-full bg-white/5" />
-      </div>
-
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-radial from-green-400/5 to-transparent rounded-full blur-3xl" />
-
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="productos-title text-center mb-16">
           <span className="text-green-400 font-semibold text-sm uppercase tracking-widest">
@@ -192,75 +170,64 @@ export default function Productos() {
           </p>
         </div>
 
-        {/* Product cards grid */}
-        <div className="products-warehouse" style={isDesktop ? { perspective: '1200px' } : {}}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Clean minimal product cards */}
+        <div className="products-grid">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {categories.map((cat, i) => {
               const Icon = cat.icon;
               return (
                 <div
                   key={cat.name}
                   onClick={() => setExpanded(i)}
-                  className={`product-iso-card cursor-pointer group relative bg-navy-800/60 backdrop-blur-sm border border-white/5 rounded-xl overflow-hidden transition-all duration-500 hover:border-green-400/20 ${
-                    isDesktop ? 'iso-card' : ''
-                  }`}
+                  className="product-card cursor-pointer group relative rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.05] hover:border-green-400/20 transition-all duration-400 overflow-hidden"
                 >
-                  {/* Subtle category image background */}
-                  {cat.bgImage && (
-                    <div
-                      className="absolute inset-0 z-0 transition-all duration-700 group-hover:opacity-20 group-hover:scale-105"
-                      style={{
-                        backgroundImage: `url(${cat.bgImage})`,
-                        backgroundSize: 'contain',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right center',
-                        opacity: 0.07,
-                        transform: 'scale(1)',
-                      }}
-                    />
-                  )}
-                  {/* Dark overlay to keep text readable */}
-                  <div className="absolute inset-0 z-0 bg-gradient-to-r from-navy-800/95 via-navy-800/80 to-navy-800/40" />
-
-                  {/* Color bar top */}
-                  <div className={`relative z-10 h-1.5 bg-gradient-to-r ${cat.color} w-full`} />
-
-                  <div className="relative z-10 p-6">
-                    <div className="flex items-center gap-4 mb-5">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(122,182,72,0.3)]"
-                        style={{ background: `${cat.accent}20` }}
-                      >
-                        <Icon className="text-green-400 transition-transform duration-300 group-hover:scale-110" size={24} />
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300 group-hover:bg-green-400/15"
+                          style={{ background: `${cat.accent}15` }}
+                        >
+                          <Icon className="text-white/60 group-hover:text-green-400 transition-colors duration-300" size={20} />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-bold text-white group-hover:text-green-400 transition-colors duration-300">
+                            {cat.name}
+                          </h3>
+                          <span className="text-white/30 text-xs">
+                            {cat.products.length} producto{cat.products.length > 1 ? 's' : ''}
+                          </span>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-green-400 transition-colors">
-                        {cat.name}
-                      </h3>
+                      <ChevronRight className="text-white/20 group-hover:text-green-400/60 transition-all duration-300 group-hover:translate-x-1" size={18} />
                     </div>
 
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {cat.products.slice(0, 4).map((product) => (
-                        <span
-                          key={product.name}
-                          className="text-xs bg-white/5 text-white/60 px-3 py-1.5 rounded-full border border-white/5"
-                        >
-                          {product.name}
-                        </span>
+                    {/* Product list preview */}
+                    <div className="space-y-1.5 mb-4">
+                      {cat.products.slice(0, 3).map((product) => (
+                        <div key={product.name} className="flex items-center gap-2">
+                          <div className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-green-400/50 transition-colors duration-300" />
+                          <span className="text-white/50 text-sm group-hover:text-white/70 transition-colors duration-300">
+                            {product.name}
+                          </span>
+                        </div>
                       ))}
-                      {cat.products.length > 4 && (
-                        <span className="text-xs text-green-400/60 px-3 py-1.5">
-                          +{cat.products.length - 4} mas
+                      {cat.products.length > 3 && (
+                        <span className="text-white/25 text-xs ml-3">
+                          +{cat.products.length - 3} más
                         </span>
                       )}
                     </div>
 
+                    {/* Brands */}
                     {cat.brands.length > 0 && (
-                      <div className="pt-4 border-t border-white/5">
-                        <div className="flex flex-wrap gap-2">
+                      <div className="pt-3 border-t border-white/[0.04]">
+                        <div className="flex flex-wrap gap-1.5">
                           {cat.brands.map((brand) => (
                             <span
                               key={brand}
-                              className="text-xs text-green-400/80 bg-green-400/5 px-2.5 py-1 rounded font-semibold border border-green-400/10"
+                              className="text-[10px] text-white/40 bg-white/[0.04] px-2 py-0.5 rounded font-medium"
                             >
                               {brand}
                             </span>
@@ -270,8 +237,8 @@ export default function Productos() {
                     )}
                   </div>
 
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-t from-green-400/5 to-transparent" />
+                  {/* Bottom accent line on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-green-400/0 group-hover:bg-green-400/40 transition-all duration-500" />
                 </div>
               );
             })}
@@ -284,7 +251,7 @@ export default function Productos() {
             href="/Catalogo_CONSTRUFAST_compressed.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl hover:bg-green-400/10 hover:border-green-400/20 transition-all duration-300 group"
+            className="inline-flex items-center gap-3 bg-white/[0.03] border border-white/10 text-white font-semibold px-8 py-4 rounded-xl hover:bg-green-400/10 hover:border-green-400/20 transition-all duration-300 group"
           >
             <Download size={18} className="group-hover:animate-bounce" />
             Descargar Catálogo PDF
@@ -292,44 +259,31 @@ export default function Productos() {
         </div>
       </div>
 
-      {/* Marquee strip of product images */}
+      {/* Marquee strip of product images — visual accent */}
       <div
         className="marquee-strip mt-20 overflow-hidden relative"
         onMouseEnter={pauseMarquee}
         onMouseLeave={resumeMarquee}
       >
-        {/* Fade edges */}
         <div className="absolute left-0 top-0 w-32 h-full z-10 bg-gradient-to-r from-navy-950 to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 w-32 h-full z-10 bg-gradient-to-l from-navy-950 to-transparent pointer-events-none" />
 
-        <div className="flex items-center border-t border-b border-white/5 py-6">
-          <div ref={marqueeRef} className="flex items-center gap-10 will-change-transform">
-            {/* Duplicate for seamless loop */}
+        <div className="flex items-center border-t border-b border-white/[0.04] py-6">
+          <div ref={marqueeRef} className="flex items-center gap-12 will-change-transform">
             {[...marqueeItems, ...marqueeItems].map((item, idx) => (
               <div
                 key={idx}
                 className="flex-shrink-0 flex flex-col items-center gap-2 group/item"
               >
-                <div className="w-20 h-20 relative flex items-center justify-center">
+                <div className="w-16 h-16 flex items-center justify-center">
                   <img
                     src={item.img}
                     alt={item.name}
-                    className="max-w-full max-h-full object-contain transition-all duration-300 group-hover/item:scale-110"
-                    style={{
-                      filter: 'drop-shadow(0 4px 12px rgba(122,182,72,0.15))',
-                      opacity: 0.75,
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.opacity = '1';
-                      (e.currentTarget as HTMLImageElement).style.filter = 'drop-shadow(0 4px 20px rgba(122,182,72,0.4))';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.opacity = '0.75';
-                      (e.currentTarget as HTMLImageElement).style.filter = 'drop-shadow(0 4px 12px rgba(122,182,72,0.15))';
-                    }}
+                    className="max-w-full max-h-full object-contain opacity-50 group-hover/item:opacity-90 transition-all duration-300 group-hover/item:scale-110"
+                    style={{ filter: 'drop-shadow(0 2px 8px rgba(122,182,72,0.1))' }}
                   />
                 </div>
-                <span className="text-white/30 text-xs font-medium tracking-wide whitespace-nowrap group-hover/item:text-white/60 transition-colors duration-300">
+                <span className="text-white/20 text-[10px] font-medium tracking-wide whitespace-nowrap group-hover/item:text-white/50 transition-colors duration-300">
                   {item.name}
                 </span>
               </div>
@@ -338,50 +292,48 @@ export default function Productos() {
         </div>
       </div>
 
-      {/* Expanded product detail overlay */}
+      {/* Modal detail */}
       {expanded !== null && (
         <div
           className="fixed inset-0 z-[70] bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-6"
           onClick={() => setExpanded(null)}
         >
           <div
-            className="bg-navy-800 border border-white/10 rounded-2xl p-8 max-w-lg w-full relative max-h-[85vh] overflow-y-auto"
+            className="bg-navy-900 border border-white/[0.08] rounded-2xl p-8 max-w-lg w-full relative max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setExpanded(null)}
-              className="absolute top-4 right-4 text-white/50 hover:text-white"
+              className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors"
             >
-              <X size={24} />
+              <X size={22} />
             </button>
 
-            <div className={`h-2 bg-gradient-to-r ${categories[expanded].color} rounded-full mb-6`} />
-
-            <div className="flex items-center gap-4 mb-6">
-              {(() => { const Icon = categories[expanded].icon; return <Icon className="text-green-400" size={28} />; })()}
-              <h3 className="text-2xl font-black text-white">{categories[expanded].name}</h3>
+            <div className="flex items-center gap-4 mb-8">
+              {(() => { const Icon = categories[expanded].icon; return <Icon className="text-green-400" size={24} />; })()}
+              <h3 className="text-xl font-bold text-white">{categories[expanded].name}</h3>
             </div>
 
             <div className="mb-6">
-              <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-3">Productos</p>
-              <div className="flex flex-col gap-1">
+              <p className="text-white/30 text-xs uppercase tracking-widest font-bold mb-4">Productos</p>
+              <div className="flex flex-col gap-0.5">
                 {categories[expanded].products.map((p) => (
-                  <div key={p.name} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
+                  <div key={p.name} className="flex items-center gap-3 py-2.5 border-b border-white/[0.04] last:border-0">
                     {p.img ? (
-                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center">
+                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/[0.03]">
                         <img
                           src={p.img}
                           alt={p.name}
-                          className="max-w-full max-h-full object-contain"
-                          style={{ filter: 'drop-shadow(0 2px 6px rgba(122,182,72,0.2))' }}
+                          className="max-w-[32px] max-h-[32px] object-contain"
+                          style={{ filter: 'drop-shadow(0 1px 4px rgba(122,182,72,0.15))' }}
                         />
                       </div>
                     ) : (
                       <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400/50" />
                       </div>
                     )}
-                    <span className="text-white/70 text-sm">{p.name}</span>
+                    <span className="text-white/70 text-sm font-medium">{p.name}</span>
                   </div>
                 ))}
               </div>
@@ -389,10 +341,10 @@ export default function Productos() {
 
             {categories[expanded].brands.length > 0 && (
               <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-3">Marcas Autorizadas</p>
+                <p className="text-white/30 text-xs uppercase tracking-widest font-bold mb-3">Marcas Autorizadas</p>
                 <div className="flex flex-wrap gap-2">
                   {categories[expanded].brands.map((b) => (
-                    <span key={b} className="text-sm font-semibold text-green-400 bg-green-400/10 px-4 py-2 rounded-lg border border-green-400/20">
+                    <span key={b} className="text-sm font-medium text-green-400 bg-green-400/[0.08] px-4 py-2 rounded-lg border border-green-400/15">
                       {b}
                     </span>
                   ))}
