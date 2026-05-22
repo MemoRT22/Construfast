@@ -55,20 +55,30 @@ export default function LateralNav() {
         Cotizar
       </a>
 
-      {/* Lateral dots */}
-      <nav className="nav-lateral" aria-label="Navegación de secciones">
-        <div className="relative flex flex-col items-center gap-6">
+      {/* Lateral nav with labels */}
+      <nav className="nav-lateral" aria-label="Navegacion de secciones">
+        <div className="relative flex flex-col gap-5">
           {/* Background line */}
-          <div className="absolute top-0 bottom-0 w-[2px] bg-white/10 left-1/2 -translate-x-1/2" />
+          <div className="absolute top-0 bottom-0 w-[1px] bg-white/10 left-[5px]" />
 
           {sections.map((section, i) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className={`nav-dot relative z-10 ${i === active ? 'active' : ''}`}
-              aria-label={section.label}
+              className="nav-item group flex items-center gap-3"
             >
-              <span className="nav-dot-label">{section.label}</span>
+              <span
+                className={`nav-dot relative z-10 flex-shrink-0 ${i === active ? 'active' : ''}`}
+              />
+              <span
+                className={`nav-label transition-all duration-300 ${
+                  i === active
+                    ? 'text-green-400 font-semibold'
+                    : 'text-white/35 font-medium group-hover:text-white/70'
+                }`}
+              >
+                {section.label}
+              </span>
             </a>
           ))}
         </div>

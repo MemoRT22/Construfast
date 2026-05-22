@@ -207,61 +207,61 @@ export default function Contacto() {
             </div>
           </div>
 
-          {/* Contact info as post-it notes */}
-          <div className="contacto-notes lg:col-span-2 space-y-5">
-            {/* Phone post-it */}
-            <div className="post-it" style={{ transform: 'rotate(-1.5deg)' }}>
-              <a href="tel:+524421797779" className="flex items-center gap-3 group">
-                <Phone className="text-navy-800" size={18} />
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase">Celular</p>
-                  <p className="text-navy-800 font-bold font-handwriting text-xl">442 179 7779</p>
-                </div>
-              </a>
-            </div>
+          {/* Contact info cards */}
+          <div className="contacto-notes lg:col-span-2 space-y-4">
+            {/* Phone */}
+            <a href="tel:+524421797779" className="contact-card flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-green-400/10 flex items-center justify-center flex-shrink-0">
+                <Phone className="text-green-400" size={18} />
+              </div>
+              <div>
+                <p className="text-[11px] text-white/40 font-semibold uppercase tracking-wider">Celular</p>
+                <p className="text-white font-bold text-base mt-0.5">442 179 7779</p>
+              </div>
+            </a>
 
-            {/* Email post-it */}
-            <div className="post-it" style={{ transform: 'rotate(1deg)' }}>
-              <a href="mailto:construfastqro@outlook.com" className="flex items-center gap-3 group">
-                <Mail className="text-navy-800" size={18} />
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase">Correo</p>
-                  <p className="text-navy-800 font-bold font-handwriting text-lg">construfastqro@outlook.com</p>
-                </div>
-              </a>
-            </div>
+            {/* Email */}
+            <a href="mailto:construfastqro@outlook.com" className="contact-card flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-green-400/10 flex items-center justify-center flex-shrink-0">
+                <Mail className="text-green-400" size={18} />
+              </div>
+              <div>
+                <p className="text-[11px] text-white/40 font-semibold uppercase tracking-wider">Correo</p>
+                <p className="text-white font-bold text-base mt-0.5">construfastqro@outlook.com</p>
+              </div>
+            </a>
 
-            {/* Location post-it */}
-            <div className="post-it" style={{ transform: 'rotate(-0.5deg)' }}>
-              <div className="flex items-center gap-3">
-                <MapPin className="text-navy-800 flex-shrink-0" size={18} />
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase">Ubicacion</p>
-                  <p className="text-navy-800 font-bold font-handwriting text-lg">
-                    C. Kilimanjaro #3 Col. Loma Bonita, Qro. C.P. 76118
-                  </p>
-                </div>
+            {/* Location */}
+            <div className="contact-card flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-green-400/10 flex items-center justify-center flex-shrink-0">
+                <MapPin className="text-green-400" size={18} />
+              </div>
+              <div>
+                <p className="text-[11px] text-white/40 font-semibold uppercase tracking-wider">Ubicacion</p>
+                <p className="text-white font-bold text-base mt-0.5">
+                  C. Kilimanjaro #3 Col. Loma Bonita, Qro. C.P. 76118
+                </p>
               </div>
             </div>
 
-            {/* Instagram post-it */}
-            <div className="post-it" style={{ transform: 'rotate(1.5deg)' }}>
-              <a
-                href="https://instagram.com/construfast_qro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group"
-              >
-                <AtSign className="text-navy-800" size={18} />
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase">Instagram</p>
-                  <p className="text-navy-800 font-bold font-handwriting text-xl">@construfast_qro</p>
-                </div>
-              </a>
-            </div>
+            {/* Instagram */}
+            <a
+              href="https://instagram.com/construfast_qro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-card flex items-center gap-4"
+            >
+              <div className="w-10 h-10 rounded-lg bg-green-400/10 flex items-center justify-center flex-shrink-0">
+                <AtSign className="text-green-400" size={18} />
+              </div>
+              <div>
+                <p className="text-[11px] text-white/40 font-semibold uppercase tracking-wider">Instagram</p>
+                <p className="text-white font-bold text-base mt-0.5">@construfast_qro</p>
+              </div>
+            </a>
 
             {/* WhatsApp CTA card */}
-            <div className="bg-navy-800 border border-white/10 rounded-xl p-6 text-white mt-6">
+            <div className="bg-gradient-to-br from-navy-800 to-navy-900 border border-white/10 rounded-xl p-6 text-white mt-6">
               <h4 className="font-bold text-lg mb-2">Atencion Rapida</h4>
               <p className="text-white/60 text-sm leading-relaxed">
                 Escribenos por WhatsApp para una respuesta inmediata.
