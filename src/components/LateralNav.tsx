@@ -38,13 +38,13 @@ export default function LateralNav() {
 
   return (
     <>
-      {/* Logo fixed top-left */}
+      {/* Logo inside sidebar area */}
       <a
         href="#inicio"
         className="fixed top-6 left-6 z-50 flex items-baseline gap-0"
       >
-        <span className="text-xl font-black tracking-tight text-green-400">CONSTRU</span>
-        <span className="text-xl font-black tracking-tight text-white">FAST</span>
+        <span className="text-lg font-black tracking-tight text-green-400">CONSTRU</span>
+        <span className="text-lg font-black tracking-tight text-white">FAST</span>
       </a>
 
       {/* Cotizar button fixed top-right */}
