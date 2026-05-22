@@ -9,10 +9,7 @@ import {
   TreePine,
   Cylinder,
   Download,
-  X,
-  ChevronRight,
 } from 'lucide-react';
-import { useDevice } from '../hooks/useDevice';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +27,6 @@ const categories = [
       { name: 'Estribo', img: '/assets/images/Acero/Fondo_de_Estribo_eliminado.png' },
     ],
     brands: ['DeAcero', 'Sicartsa', 'Simec'],
-    accent: '#6b7280',
   },
   {
     name: 'Polvos',
@@ -44,7 +40,6 @@ const categories = [
       { name: 'Cal', img: '/assets/images/Polvos/Fondo_de_cal_calidra_eliminado.png' },
     ],
     brands: ['Cuvasa', 'Cemex', 'Holcim', 'Unibasico', 'Uniblock'],
-    accent: '#d97706',
   },
   {
     name: 'Prefabricados',
@@ -57,7 +52,6 @@ const categories = [
       { name: 'Bovedilla', img: '/assets/images/Prefabricados/Fondo_de_Bovedilla_eliminado.png' },
     ],
     brands: [],
-    accent: '#78716c',
   },
   {
     name: 'Agregados',
@@ -69,7 +63,6 @@ const categories = [
       { name: 'Piedra', img: '/assets/images/Agregados/piedra.jpg' },
     ],
     brands: [],
-    accent: '#ea580c',
   },
   {
     name: 'Madera / Ferreteria',
@@ -81,7 +74,6 @@ const categories = [
       { name: 'Herramientas', img: '/assets/images/Ferreteria_y_madera/Fondo_de_herramientas_eliminado.png' },
     ],
     brands: ['Truper'],
-    accent: '#a16207',
   },
   {
     name: 'Concreto',
@@ -90,24 +82,13 @@ const categories = [
       { name: 'Concreto Premezclado', img: null },
     ],
     brands: [],
-    accent: '#64748b',
   },
 ];
 
-const marqueeItems = categories.flatMap((cat) =>
-  cat.products.filter((p) => p.img !== null).map((p) => ({
-    name: p.name,
-    img: p.img as string,
-    category: cat.name,
-  }))
-);
-
 export default function Productos() {
   const sectionRef = useRef<HTMLElement>(null);
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const { isDesktop } = useDevice();
-  const [expanded, setExpanded] = useState<number | null>(null);
-  const marqueeAnimRef = useRef<gsap.core.Tween | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -116,15 +97,14 @@ export default function Productos() {
         scrollTrigger: { trigger: '.productos-title', start: 'top 85%' },
       });
 
-      gsap.fromTo('.product-card', { opacity: 0, y: 40 }, {
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.08,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: '.products-grid', start: 'top 80%' },
+      gsap.fromTo('.productos-tabs', { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.6, delay: 0.2,
+        scrollTrigger: { trigger: '.productos-tabs', start: 'top 85%' },
       });
 
-      gsap.fromTo('.marquee-strip', { opacity: 0 }, {
-        opacity: 1, duration: 1,
-        scrollTrigger: { trigger: '.marquee-strip', start: 'top 90%' },
+      gsap.fromTo('.productos-content', { opacity: 0 }, {
+        opacity: 1, duration: 0.8, delay: 0.4,
+        scrollTrigger: { trigger: '.productos-content', start: 'top 85%' },
       });
     }, sectionRef);
 
@@ -132,33 +112,25 @@ export default function Productos() {
   }, []);
 
   useEffect(() => {
-    if (!marqueeRef.current) return;
-    const track = marqueeRef.current;
-    const totalWidth = track.scrollWidth / 2;
-
-    const tween = gsap.to(track, {
-      x: -totalWidth,
-      duration: 45,
-      ease: 'none',
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth),
-      },
+    if (!contentRef.current) return;
+    const items = contentRef.current.querySelectorAll('.product-item');
+    gsap.fromTo(items, { opacity: 0, y: 20, scale: 0.95 }, {
+      opacity: 1, y: 0, scale: 1,
+      duration: 0.4, stagger: 0.05,
+      ease: 'power2.out',
+      overwrite: true,
     });
+  }, [activeTab]);
 
-    marqueeAnimRef.current = tween;
-    return () => { tween.kill(); };
-  }, []);
-
-  const pauseMarquee = () => marqueeAnimRef.current?.pause();
-  const resumeMarquee = () => marqueeAnimRef.current?.resume();
+  const current = categories[activeTab];
 
   return (
     <section ref={sectionRef} id="productos" className="py-24 md:py-32 bg-navy-950 relative overflow-hidden">
       <div className="texture-metal absolute inset-0" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="productos-title text-center mb-16">
+      <div className="relative max-w-6xl mx-auto px-6">
+        {/* Header */}
+        <div className="productos-title text-center mb-12">
           <span className="text-green-400 font-semibold text-sm uppercase tracking-widest">
             Catálogo
           </span>
@@ -170,83 +142,81 @@ export default function Productos() {
           </p>
         </div>
 
-        {/* Clean minimal product cards */}
-        <div className="products-grid">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Category tabs */}
+        <div className="productos-tabs mb-10">
+          <div className="flex gap-1 overflow-x-auto pb-2 scrollbar-hide justify-start md:justify-center">
             {categories.map((cat, i) => {
               const Icon = cat.icon;
+              const isActive = i === activeTab;
               return (
-                <div
+                <button
                   key={cat.name}
-                  onClick={() => setExpanded(i)}
-                  className="product-card cursor-pointer group relative rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.05] hover:border-green-400/20 transition-all duration-400 overflow-hidden"
+                  onClick={() => setActiveTab(i)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                    isActive
+                      ? 'bg-green-400/10 text-green-400 border border-green-400/20'
+                      : 'text-white/40 hover:text-white/70 hover:bg-white/[0.03] border border-transparent'
+                  }`}
                 >
-                  <div className="p-6">
-                    {/* Header */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300 group-hover:bg-green-400/15"
-                          style={{ background: `${cat.accent}15` }}
-                        >
-                          <Icon className="text-white/60 group-hover:text-green-400 transition-colors duration-300" size={20} />
-                        </div>
-                        <div>
-                          <h3 className="text-base font-bold text-white group-hover:text-green-400 transition-colors duration-300">
-                            {cat.name}
-                          </h3>
-                          <span className="text-white/30 text-xs">
-                            {cat.products.length} producto{cat.products.length > 1 ? 's' : ''}
-                          </span>
-                        </div>
-                      </div>
-                      <ChevronRight className="text-white/20 group-hover:text-green-400/60 transition-all duration-300 group-hover:translate-x-1" size={18} />
-                    </div>
-
-                    {/* Product list preview */}
-                    <div className="space-y-1.5 mb-4">
-                      {cat.products.slice(0, 3).map((product) => (
-                        <div key={product.name} className="flex items-center gap-2">
-                          <div className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-green-400/50 transition-colors duration-300" />
-                          <span className="text-white/50 text-sm group-hover:text-white/70 transition-colors duration-300">
-                            {product.name}
-                          </span>
-                        </div>
-                      ))}
-                      {cat.products.length > 3 && (
-                        <span className="text-white/25 text-xs ml-3">
-                          +{cat.products.length - 3} más
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Brands */}
-                    {cat.brands.length > 0 && (
-                      <div className="pt-3 border-t border-white/[0.04]">
-                        <div className="flex flex-wrap gap-1.5">
-                          {cat.brands.map((brand) => (
-                            <span
-                              key={brand}
-                              className="text-[10px] text-white/40 bg-white/[0.04] px-2 py-0.5 rounded font-medium"
-                            >
-                              {brand}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Bottom accent line on hover */}
-                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-green-400/0 group-hover:bg-green-400/40 transition-all duration-500" />
-                </div>
+                  <Icon size={16} />
+                  <span>{cat.name}</span>
+                </button>
               );
             })}
           </div>
         </div>
 
+        {/* Product gallery */}
+        <div className="productos-content" ref={contentRef}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {current.products.map((product) => (
+              <div
+                key={product.name}
+                className="product-item group"
+              >
+                <div className="aspect-square rounded-xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-center p-6 transition-all duration-300 group-hover:border-green-400/20 group-hover:bg-white/[0.04] group-hover:shadow-[0_8px_32px_rgba(122,182,72,0.08)]">
+                  {product.img ? (
+                    <img
+                      src={product.img}
+                      alt={product.name}
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                      style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+                    />
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
+                      <Layers className="text-white/20" size={28} />
+                    </div>
+                  )}
+                </div>
+                <p className="text-center text-sm text-white/50 mt-3 font-medium group-hover:text-white/80 transition-colors duration-300">
+                  {product.name}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Brands row */}
+          {current.brands.length > 0 && (
+            <div className="mt-10 pt-8 border-t border-white/[0.04]">
+              <p className="text-white/25 text-xs uppercase tracking-widest font-bold mb-4 text-center">
+                Marcas Autorizadas
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {current.brands.map((brand) => (
+                  <span
+                    key={brand}
+                    className="text-sm font-medium text-green-400/80 bg-green-400/[0.06] px-5 py-2 rounded-lg border border-green-400/10"
+                  >
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Download catalog */}
-        <div className="text-center mt-14">
+        <div className="text-center mt-16">
           <a
             href="/Catalogo_CONSTRUFAST_compressed.pdf"
             target="_blank"
@@ -258,102 +228,6 @@ export default function Productos() {
           </a>
         </div>
       </div>
-
-      {/* Marquee strip of product images — visual accent */}
-      <div
-        className="marquee-strip mt-20 overflow-hidden relative"
-        onMouseEnter={pauseMarquee}
-        onMouseLeave={resumeMarquee}
-      >
-        <div className="absolute left-0 top-0 w-32 h-full z-10 bg-gradient-to-r from-navy-950 to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 w-32 h-full z-10 bg-gradient-to-l from-navy-950 to-transparent pointer-events-none" />
-
-        <div className="flex items-center border-t border-b border-white/[0.04] py-6">
-          <div ref={marqueeRef} className="flex items-center gap-12 will-change-transform">
-            {[...marqueeItems, ...marqueeItems].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex-shrink-0 flex flex-col items-center gap-2 group/item"
-              >
-                <div className="w-16 h-16 flex items-center justify-center">
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="max-w-full max-h-full object-contain opacity-50 group-hover/item:opacity-90 transition-all duration-300 group-hover/item:scale-110"
-                    style={{ filter: 'drop-shadow(0 2px 8px rgba(122,182,72,0.1))' }}
-                  />
-                </div>
-                <span className="text-white/20 text-[10px] font-medium tracking-wide whitespace-nowrap group-hover/item:text-white/50 transition-colors duration-300">
-                  {item.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Modal detail */}
-      {expanded !== null && (
-        <div
-          className="fixed inset-0 z-[70] bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-6"
-          onClick={() => setExpanded(null)}
-        >
-          <div
-            className="bg-navy-900 border border-white/[0.08] rounded-2xl p-8 max-w-lg w-full relative max-h-[85vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setExpanded(null)}
-              className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors"
-            >
-              <X size={22} />
-            </button>
-
-            <div className="flex items-center gap-4 mb-8">
-              {(() => { const Icon = categories[expanded].icon; return <Icon className="text-green-400" size={24} />; })()}
-              <h3 className="text-xl font-bold text-white">{categories[expanded].name}</h3>
-            </div>
-
-            <div className="mb-6">
-              <p className="text-white/30 text-xs uppercase tracking-widest font-bold mb-4">Productos</p>
-              <div className="flex flex-col gap-0.5">
-                {categories[expanded].products.map((p) => (
-                  <div key={p.name} className="flex items-center gap-3 py-2.5 border-b border-white/[0.04] last:border-0">
-                    {p.img ? (
-                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/[0.03]">
-                        <img
-                          src={p.img}
-                          alt={p.name}
-                          className="max-w-[32px] max-h-[32px] object-contain"
-                          style={{ filter: 'drop-shadow(0 1px 4px rgba(122,182,72,0.15))' }}
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-400/50" />
-                      </div>
-                    )}
-                    <span className="text-white/70 text-sm font-medium">{p.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {categories[expanded].brands.length > 0 && (
-              <div>
-                <p className="text-white/30 text-xs uppercase tracking-widest font-bold mb-3">Marcas Autorizadas</p>
-                <div className="flex flex-wrap gap-2">
-                  {categories[expanded].brands.map((b) => (
-                    <span key={b} className="text-sm font-medium text-green-400 bg-green-400/[0.08] px-4 py-2 rounded-lg border border-green-400/15">
-                      {b}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

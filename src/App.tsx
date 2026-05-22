@@ -82,7 +82,7 @@ function App() {
 
       <div className={loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
         {isDesktop ? <LateralNav /> : <MobileHeader />}
-        <main className={isDesktop ? 'ml-[160px]' : ''}>
+        <main>
           <Hero />
           <SectionDivider />
           <Nosotros />

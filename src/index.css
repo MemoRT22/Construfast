@@ -121,60 +121,6 @@ body {
   margin: 0 24px;
 }
 
-/* Lateral navigation */
-.nav-lateral {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 160px;
-  z-index: 40;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding-left: 24px;
-}
-
-.nav-item {
-  text-decoration: none;
-}
-
-.nav-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  transition: all 0.3s ease;
-  display: block;
-}
-
-.nav-dot.active {
-  border-color: #7AB648;
-  background: #7AB648;
-  box-shadow: 0 0 12px rgba(122, 182, 72, 0.4);
-}
-
-.nav-label {
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-/* Progress line between dots */
-.nav-progress-line {
-  position: absolute;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.nav-progress-fill {
-  width: 2px;
-  background: #7AB648;
-  transition: height 0.3s ease;
-}
 
 /* WhatsApp pulse */
 @keyframes pulse-green {
@@ -324,17 +270,6 @@ body {
   clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
 
-/* Isometric product cards */
-.iso-card {
-  transform: perspective(1000px) rotateY(-5deg) rotateX(3deg);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
-}
-
-.iso-card:hover {
-  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
 /* Scroll horizontal timeline */
 .timeline-track {
   display: flex;
@@ -388,6 +323,15 @@ body {
 @keyframes count-up {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Reduced motion */

@@ -4,7 +4,7 @@ export default function WhatsAppButton() {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <div className="hidden md:flex fixed bottom-6 right-6 z-50 items-center gap-3">
       {hovered && (
         <span className="bg-navy-800 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-lg animate-fade-in whitespace-nowrap">
           Escríbenos por WhatsApp
