@@ -127,7 +127,7 @@ export default function Nosotros() {
                   </div>
                   <p className="text-white/60 text-sm leading-relaxed">{s.content}</p>
                   {s.sub && (
-                    <p className="text-white/40 text-sm leading-relaxed mt-3">{s.sub}</p>
+                    <p className="text-white/60 text-sm leading-relaxed mt-3">{s.sub}</p>
                   )}
                 </div>
               );
@@ -194,7 +194,7 @@ export default function Nosotros() {
 
                   <p className="text-white/70 text-base leading-relaxed">{s.content}</p>
                   {s.sub && (
-                    <p className="text-white/40 text-sm leading-relaxed mt-4">{s.sub}</p>
+                    <p className="text-white/70 text-base leading-relaxed mt-4">{s.sub}</p>
                   )}
                 </div>
               </div>
