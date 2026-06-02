@@ -11,8 +11,7 @@ const stations = [
   {
     icon: Target,
     title: 'Quiénes Somos',
-    content: 'En CONSTRUFAST sabemos que cada proyecto representa esfuerzo, sueños y grandes metas. Por eso, más que vender materiales para construcción, nos enfocamos en brindar confianza, calidad y rapidez para que cada obra avance sin detenerse.',
-    sub: 'Somos una empresa especializada en la comercialización de materiales para la construcción en Querétaro, orientada a atender de manera profesional y eficiente a clientes corporativos, constructoras y desarrolladores.',
+    content: 'Más que vender materiales, brindamos confianza, calidad y rapidez para que cada obra avance sin detenerse. Atendemos a constructoras, desarrolladores y clientes corporativos en Querétaro.',
   },
   {
     icon: Target,
