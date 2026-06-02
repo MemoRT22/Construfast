@@ -12,6 +12,7 @@ import {
   Clock,
 } from 'lucide-react';
 import { useDevice } from '../hooks/useDevice';
+import DustParticles from '../components/DustParticles';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +72,7 @@ export default function Valores() {
       {/* Concrete wall background - subtle texture, same base color */}
       <div className="absolute inset-0 texture-concrete opacity-40" />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/95 to-navy-950" />
+      <DustParticles count={12} />
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="valores-title text-center mb-16">

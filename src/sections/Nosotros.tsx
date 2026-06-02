@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Target, Eye, Building2, Users } from 'lucide-react';
 import { useDevice } from '../hooks/useDevice';
+import DustParticles from '../components/DustParticles';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,6 +102,7 @@ export default function Nosotros() {
     return (
       <section ref={sectionRef} id="nosotros" className="py-20 bg-navy-950 relative">
         <div className="texture-concrete absolute inset-0 opacity-30" />
+        <DustParticles count={10} />
         <div className="relative max-w-xl mx-auto px-6">
           <div className="mobile-nosotros-title mb-12">
             <span className="text-green-400 font-semibold text-xs uppercase tracking-widest">
@@ -141,6 +143,7 @@ export default function Nosotros() {
   return (
     <section ref={sectionRef} id="nosotros" className="relative overflow-hidden bg-navy-950">
       <div className="texture-concrete absolute inset-0 opacity-30" />
+      <DustParticles count={12} />
 
       <div ref={trackRef} className="flex items-center h-screen relative">
         {/* Intro panel */}
