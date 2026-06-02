@@ -79,7 +79,7 @@ const categories = [
     name: 'Concreto',
     icon: Layers,
     products: [
-      { name: 'Concreto Premezclado', '/assets/images/Concreto/Fondo_de_Concreto_eliminado.png' },
+      { name: 'Concreto Premezclado', img: null },
     ],
     brands: [],
   },
