@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, Phone, MapPin, Send, AtSign } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 import { useDevice } from '../hooks/useDevice';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -62,19 +61,35 @@ export default function Contacto() {
     }
 
     setSending(true);
-    const { error: dbError } = await supabase.from('contact_messages').insert({
-      nombre: form.nombre.trim(),
-      email: form.email.trim(),
-      telefono: form.telefono.trim(),
-      mensaje: form.mensaje.trim(),
-    });
 
-    setSending(false);
+    const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          nombre: form.nombre.trim(),
+          email: form.email.trim(),
+          telefono: form.telefono.trim(),
+          mensaje: form.mensaje.trim(),
+        }),
+      });
 
-    if (dbError) {
+      if (!res.ok) {
+        setSending(false);
+        setError('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
+        return;
+      }
+    } catch {
+      setSending(false);
       setError('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
       return;
     }
+
+    setSending(false);
 
     setSent(true);
     setForm({ nombre: '', email: '', telefono: '', mensaje: '' });
