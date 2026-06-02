@@ -74,12 +74,12 @@ export default function Footer() {
                   construfastqro@outlook.com
                 </span>
               </a>
-              <div className="flex items-start gap-3 text-white/40 text-sm">
-                <MapPin size={14} className="text-green-400/50 mt-0.5 flex-shrink-0" />
-                <span className="border-b border-dashed border-white/10 pb-0.5">
+              <a href="https://www.google.com/maps/search/C.+Kilimanjaro+3+Col.+Loma+Bonita+Queretaro+76118" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-white/40 hover:text-green-400 text-sm transition-colors group">
+                <MapPin size={14} className="text-green-400/50 group-hover:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="border-b border-dashed border-white/10 group-hover:border-green-400/30 pb-0.5">
                   C. Kilimanjaro #3 Col. Loma Bonita, Qro. C.P. 76118
                 </span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
