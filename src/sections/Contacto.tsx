@@ -247,7 +247,12 @@ export default function Contacto() {
             </a>
 
             {/* Location */}
-            <div className="contact-card flex items-center gap-4">
+            <a
+              href="https://maps.app.goo.gl/MVahfBkaS8jZivFz5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-card flex items-center gap-4"
+            >
               <div className="w-10 h-10 rounded-lg bg-green-400/10 flex items-center justify-center flex-shrink-0">
                 <MapPin className="text-green-400" size={18} />
               </div>
@@ -257,7 +262,7 @@ export default function Contacto() {
                   C. Kilimanjaro #3 Col. Loma Bonita, Qro. C.P. 76118
                 </p>
               </div>
-            </div>
+            </a>
 
             {/* Instagram */}
             <a
