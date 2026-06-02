@@ -82,8 +82,8 @@ Deno.serve(async (req: Request) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "CONSTRUFAST Web <noreply@construfast.com.mx>",
-        to: ["contacto@construfast.com.mx"],
+        from: "CONSTRUFAST Web <noreply@construfast.mx>",
+        to: ["contacto@construfast.mx"],
         subject: `Nuevo mensaje de contacto - ${nombre}`,
         html: htmlBody,
         reply_to: email,
