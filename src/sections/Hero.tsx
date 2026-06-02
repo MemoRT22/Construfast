@@ -54,9 +54,9 @@ export default function Hero() {
       {/* Full-screen background image */}
       <img
         ref={imgRef}
-        src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-        alt="Construccion"
-        className="absolute inset-0 w-full h-full object-cover object-center scale-110"
+        src="https://images.pexels.com/photos/2323080/pexels-photo-2323080.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+        alt="Obra de construccion a gran escala"
+        className="absolute inset-0 w-full h-full object-cover object-[center_30%] scale-110"
         loading="eager"
       />
 
