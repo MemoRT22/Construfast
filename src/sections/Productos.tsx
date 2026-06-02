@@ -79,7 +79,7 @@ const categories = [
     name: 'Concreto',
     icon: Layers,
     products: [
-      { name: 'Concreto Premezclado', img: '/assets/images/Concreto/Fondo_de_Concreto_eliminado.png' },
+      { name: 'Concreto Premezclado', img: null },
     ],
     brands: [],
   },
@@ -184,7 +184,7 @@ export default function Productos() {
                     />
                   ) : (
                     <div className="w-16 h-16 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
-                      <Layers className="text-white/20" size={28} />
+                      {(() => { const CatIcon = current.icon; return <CatIcon className="text-white/20" size={28} />; })()}
                     </div>
                   )}
                 </div>
