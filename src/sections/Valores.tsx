@@ -109,7 +109,7 @@ export default function Valores() {
           {/* Differentiators as metal plates + stamp */}
           <div className="diferenciadores-section space-y-5">
             <h3 className="text-xl font-bold text-white/80 mb-6">
-              Por que elegirnos
+              Por qué elegirnos
             </h3>
 
             {diferenciadores.map((dif) => {
@@ -149,7 +149,7 @@ export default function Valores() {
                 <div className="gauge-track w-48 mx-auto mt-4">
                   <div className="gauge-fill" style={{ width: gaugeVisible ? '95%' : '0%' }} />
                 </div>
-                <p className="text-white/70 font-medium mt-3">de retencion de clientes</p>
+                <p className="text-white/70 font-medium mt-3">de retención de clientes</p>
                 <p className="text-white/40 text-sm mt-1">
                   Nuestros nuevos clientes nos escogen como proveedores para futuros proyectos
                 </p>

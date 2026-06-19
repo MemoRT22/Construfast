@@ -107,7 +107,7 @@ export default function Hero() {
             <div className="flex items-center gap-4 mb-3">
               <span className="text-3xl font-black text-green-400">95%</span>
               <span className="text-white/60 text-sm text-left leading-tight max-w-[200px]">
-                de retencion de clientes
+                de retención de clientes
               </span>
             </div>
             <div className="gauge-track w-full">

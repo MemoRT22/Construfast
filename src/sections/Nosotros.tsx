@@ -105,7 +105,7 @@ export default function Nosotros() {
         <div className="relative max-w-xl mx-auto px-6">
           <div className="mobile-nosotros-title mb-12">
             <span className="text-green-400 font-semibold text-xs uppercase tracking-widest">
-              Quienes Somos
+              Quiénes Somos
             </span>
             <h2 className="text-3xl font-black text-white mt-2 leading-tight">
               Construimos confianza en cada proyecto
@@ -149,7 +149,7 @@ export default function Nosotros() {
         <div className="flex-shrink-0 w-screen h-full flex items-center justify-center px-16">
           <div className="max-w-2xl">
             <span className="text-green-400 font-semibold text-sm uppercase tracking-widest">
-              Quienes Somos
+              Quiénes Somos
             </span>
             <h2 className="text-5xl lg:text-6xl font-black text-white mt-4 leading-tight">
               Construimos<br />
