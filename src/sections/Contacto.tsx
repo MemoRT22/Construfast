@@ -62,18 +62,17 @@ export default function Contacto() {
 
     setSending(true);
 
-    const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
     try {
-      const res = await fetch(apiUrl, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          access_key: '6f3b8701-9b36-466d-b5ac-30a42e55b0bd',
+          subject: `Nueva solicitud de contacto - ${form.nombre.trim()}`,
+          from_name: 'CONSTRUFAST Web',
           nombre: form.nombre.trim(),
           email: form.email.trim(),
-          telefono: form.telefono.trim(),
+          telefono: form.telefono.trim() || 'No proporcionado',
           mensaje: form.mensaje.trim(),
         }),
       });
